@@ -39,7 +39,7 @@ class IoOperation
     file = Dir.glob(path)
     file.size == 0 ? IOError.new : file
   rescue => e
-    STDERR.puts "[ERROR][#{self.class.name}.run] #{e}"
+    STDERR.puts "[ERROR][#{self.class.name}.dir_file] #{e}"
   end
 
   def file_open(path)
@@ -47,7 +47,7 @@ class IoOperation
       file.each_line.each_with_object([]) { |line, a| a.push(line.chop.toutf8) }
     end
   rescue => e
-    STDERR.puts "[ERROR][#{self.class.name}.run] #{e}"
+    STDERR.puts "[ERROR][#{self.class.name}.file_open] #{e}"
   end
 
   def write(res)
@@ -61,13 +61,13 @@ class IoOperation
       end
     end
   rescue => e
-    STDERR.puts "[ERROR][#{self.class.name}.run] #{e}"
+    STDERR.puts "[ERROR][#{self.class.name}.write] #{e}"
   end
 
   def delete_file(file_names)
     File.unlink(*file_names)
   rescue => e
-    STDERR.puts "[ERROR][#{self.class.name}.run] #{e}"
+    STDERR.puts "[ERROR][#{self.class.name}.delete_file] #{e}"
   end
 end
 
