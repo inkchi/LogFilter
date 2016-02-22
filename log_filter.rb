@@ -40,6 +40,7 @@ class IoOperation
     file.size == 0 ? IOError.new : file
   rescue => e
     STDERR.puts "[ERROR][#{self.class.name}.dir_file] #{e}"
+    exit 1
   end
 
   def file_open(path)
@@ -48,6 +49,7 @@ class IoOperation
     end
   rescue => e
     STDERR.puts "[ERROR][#{self.class.name}.file_open] #{e}"
+    exit 1
   end
 
   def write(res)
@@ -62,12 +64,14 @@ class IoOperation
     end
   rescue => e
     STDERR.puts "[ERROR][#{self.class.name}.write] #{e}"
+    exit 1
   end
 
   def delete_file(file_names)
     File.unlink(*file_names)
   rescue => e
     STDERR.puts "[ERROR][#{self.class.name}.delete_file] #{e}"
+    exit 1
   end
 end
 
