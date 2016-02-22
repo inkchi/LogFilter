@@ -1,0 +1,10 @@
+*****
+./work/(sample)file1.txt
+*****
+1 -> こんにちは平野一生です
+
+*****
+./work/(sample)file2.txt
+*****
+1 -> 星俊充だ
+
