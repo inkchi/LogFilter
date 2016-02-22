@@ -18,7 +18,11 @@ class FilterLog
   end
 
   def make_regexp(rule)
-    @regexp = Regexp.union(rule)
+    tm = rule.each_with_object([]) do |x, y|
+      next if x.empty?
+      y.push(x)
+    end
+    p @regexp = Regexp.union(tm)
   end
 
   def make_text(text)
@@ -87,6 +91,7 @@ def main
   res = log_name.each_with_object(Hash.new(0)) do |s, h|
     h[s.to_s] = fl.run(rule, io.file_open(s))
   end
+  p res
   io.write(res)
   #io.delete_file([io.dir_file(FILTER), io.dir_file(WORKDIR)].flatten)
 end
