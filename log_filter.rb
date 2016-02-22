@@ -1,7 +1,7 @@
-# filter_log
-WORKDIR = './work/*'
-FILTER  = './filter/*'
+WORKDIR = './work/*'.freeze
+FILTER  = './filter/*'.freeze
 
+# filter_log
 class FilterLog
   def initialize
     @regexp = nil
@@ -17,6 +17,8 @@ class FilterLog
     exit 1
   end
 
+  private
+
   def make_regexp(rule)
     tm = rule.each_with_object([]) do |x, y|
       next if x.empty?
@@ -27,9 +29,9 @@ class FilterLog
 
   def make_text(text)
     @text = text
-        .each_with_index
-        .each_with_object([]) { |(val, i), arr| arr.push([i + 1, val]) }
-        .to_h
+      .each_with_index
+      .each_with_object([]) { |(val, i), arr| arr.push([i + 1, val]) }
+      .to_h
   end
 
   def search
@@ -37,6 +39,7 @@ class FilterLog
   end
 end
 
+# IoOperation
 class IoOperation
   require 'kconv'
   def dir_file(path)
@@ -61,8 +64,8 @@ class IoOperation
       res.each do |key, value|
         file.puts '*****'
         file.puts key
-        file.puts '*****' 
-        value.each {|k, v| file.puts "#{k} -> #{v}"} 
+        file.puts '*****'
+        value.each { |k, v| file.puts "#{k} -> #{v}" }
         file.puts ''
       end
     end
@@ -93,7 +96,7 @@ def main
   end
   p res
   io.write(res)
-  #io.delete_file([io.dir_file(FILTER), io.dir_file(WORKDIR)].flatten)
+  # io.delete_file([io.dir_file(FILTER), io.dir_file(WORKDIR)].flatten)
 end
 
 main
