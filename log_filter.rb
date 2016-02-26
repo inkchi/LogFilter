@@ -1,6 +1,8 @@
 WORKDIR = './work/*'.freeze
 FILTER  = './filter/*'.freeze
 
+# test
+
 # filter_log
 class FilterLog
   def initialize
